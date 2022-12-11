@@ -8,6 +8,7 @@ export interface BlogListPageProps {
 export default function BlogListPage({ blogs }: BlogListPageProps) {
     // console.log('blogs', blogs)
 
+    if (!blogs) return null
     return (
         <div>
             <h1>Blog List by Category</h1>
@@ -17,6 +18,7 @@ export default function BlogListPage({ blogs }: BlogListPageProps) {
                     <li key={blog.id}>
                         <Link href={`/blog/${blog.id}`}>
                             {blog.title}
+                            {blog.category}
                         </Link>
                     </li>
                 ))}

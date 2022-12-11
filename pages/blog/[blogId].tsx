@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next'
 import { useRouter } from 'next/dist/client/router'
 import * as React from 'react'
+import Head from 'next/head'
 
 export interface BlogPageProps {
     blog: any
@@ -8,7 +9,8 @@ export interface BlogPageProps {
 
 export default function BlogDetailPage({ blog }: BlogPageProps) {
     const router = useRouter()
-
+    const { asPath } = useRouter();
+    const cleanPath = asPath.split('#')[0].split('?')[0];
     if (router.isFallback) {
         return <div style={{ fontSize: '2rem', textAlign: 'center' }}>Loading...</div>
     }
@@ -17,6 +19,17 @@ export default function BlogDetailPage({ blog }: BlogPageProps) {
 
     return (
         <div>
+            <Head>
+                <title>Blog detail page</title>
+                <meta property="og:title" content={blog.title} key="title" />
+                <meta name="description" content={blog.summary} />
+                <meta property="og:description" content={blog.summary} />
+                <meta property="og:url" content={`${process.env.API_URL}${cleanPath}`} />
+                <meta property="og:image" content={blog.image} />
+                <meta property="og:type" content="article" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+
             <h1>Blog Detail Page</h1>
             <p>{blog.title}</p>
             <p>{blog.image}</p>
@@ -44,7 +57,7 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async (
     if (!blogId) return { notFound: true }
     const response = await fetch(`http://blog.kathy.cba/api/blog/detail/${blogId}`)
     const data = await response.json()
-    console.log(data)
+    // console.log(data)
     return {
         props: {
             blog: data.data,
