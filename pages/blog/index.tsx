@@ -3,6 +3,7 @@ import * as React from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
 import { useRouter } from 'next/router';
+import { Seo } from '@/components/common/seo'
 
 export interface BlogTopPageProps {
     blogs: any[]
@@ -15,15 +16,16 @@ export default function BlogTopPage({ blogs }: BlogTopPageProps) {
 
     return (
         <div>
-            <Head>
-                <title>Blog Top page</title>
-                <meta property="og:title" content="Blog Top page" key="title" />
-                <meta name="description" content="List of blogs to learn about NextJs" />
-                <meta property="og:description" content="List of blogs to learn about NextJs" />
-                <meta property="og:url" content={`${process.env.API_URL}${cleanPath}`} />
-                <meta property="og:type" content="article" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+            <Seo
+                data={{
+                    title: 'Blog Top page | NextJs',
+                    description:
+                        'List of blogs to learn about NextJs',
+                    url: `${process.env.API_URL}${cleanPath}`,
+                    thumbnailUrl:
+                        'https://cdn.getshifter.co/caa65008efb706a8bfc6f7e4045d6a018420c3df/uploads/2020/11/nextjs.png',
+                }}
+            />
 
             <h1>Blog Top Page</h1>
 

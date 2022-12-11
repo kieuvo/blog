@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next'
 import { useRouter } from 'next/dist/client/router'
 import * as React from 'react'
-import Head from 'next/head'
+import { Seo } from '@/components/common/seo'
 
 export interface BlogPageProps {
     blog: any
@@ -19,17 +19,14 @@ export default function BlogDetailPage({ blog }: BlogPageProps) {
 
     return (
         <div>
-            <Head>
-                <title>Blog detail page</title>
-                <meta property="og:title" content={blog.title} key="title" />
-                <meta name="description" content={blog.summary} />
-                <meta property="og:description" content={blog.summary} />
-                <meta property="og:url" content={`${process.env.API_URL}${cleanPath}`} />
-                <meta property="og:image" content={blog.image} />
-                <meta property="og:type" content="article" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-
+            <Seo
+                data={{
+                    title: `${blog.title} | NextJs`,
+                    description: blog.summary,
+                    url: `${process.env.API_URL}${cleanPath}`,
+                    thumbnailUrl: blog.image,
+                }}
+            />
             <h1>Blog Detail Page</h1>
             <p>{blog.title}</p>
             <p>{blog.image}</p>
