@@ -2,6 +2,7 @@ import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next'
 import { useRouter } from 'next/dist/client/router'
 import * as React from 'react'
 import { Seo } from '@/components/common/seo'
+import { MainLayout } from '@/components/layout'
 
 export interface BlogPageProps {
     blog: any
@@ -34,6 +35,7 @@ export default function BlogDetailPage({ blog }: BlogPageProps) {
         </div>
     )
 }
+BlogDetailPage.Layout = MainLayout
 
 export const getStaticPaths: GetStaticPaths = async () => {
     console.log('\nGET STATIC PATHS')

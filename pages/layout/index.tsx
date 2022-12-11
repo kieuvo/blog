@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Header, Footer, Sidebar } from '@/components/common'
 
 export interface ILayoutProps {
 }
@@ -6,10 +7,7 @@ export interface ILayoutProps {
 export default function Layout(props: ILayoutProps) {
     return (
         <div>
-
-            <div className="header">
-                <h2>Blog Name</h2>
-            </div>
+            <Header />
 
             <div className="row">
                 <div className="leftcolumn">
@@ -28,26 +26,11 @@ export default function Layout(props: ILayoutProps) {
                         <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
                     </div>
                 </div>
-                <div className="rightcolumn">
-                    <div className="card">
-                        <h2>About Me</h2>
-                        <div className="fakeimg" style={{ height: '100px' }}>Image</div>
-                        <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
-                    </div>
-                    <div className="card">
-                        <h3>Popular Post</h3>
-                        <div className="fakeimg">Image</div>
-                    </div>
-                    <div className="card">
-                        <h3>Follow Me</h3>
-                        <p>Some text..</p>
-                    </div>
-                </div>
+
+                <Sidebar />
             </div>
 
-            <div className="footer">
-                <h2>Footer</h2>
-            </div>
+            <Footer />
         </div>
     );
 }

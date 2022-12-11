@@ -1,13 +1,10 @@
 import * as React from 'react';
 
-export interface HeaderProps {
-}
-
-export default function Header(props: HeaderProps) {
+export function Header() {
     console.log("Header")
     return (
         <div className="header">
-            Header
+            <h2>Blog Name</h2>
         </div>
     );
 }
